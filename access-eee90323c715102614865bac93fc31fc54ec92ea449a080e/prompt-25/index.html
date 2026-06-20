@@ -32,7 +32,188 @@
     main {
       width: min(100%, 430px);
       min-height: 100vh;
-      marg…4139 tokens truncated…();
+      margin: 0 auto;
+      padding: 24px 18px 42px;
+      background-color: var(--page);
+      background-image: radial-gradient(circle at 80% 7%, rgba(173, 63, 89, .08), transparent 25%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 9px 14px;
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--rose);
+    }
+
+    h1 {
+      margin: 22px 0 6px;
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--rose);
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.25;
+    }
+
+    .paper {
+      padding: 20px 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(74, 45, 35, .08);
+      background: var(--paper);
+    }
+
+    .paper-label {
+      margin: 0 0 13px;
+      color: var(--rose);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #promptText {
+      margin: 0;
+      color: var(--ink);
+      font: 16px/1.55 Arial, sans-serif;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 56px;
+      margin-top: 16px;
+      border: 0;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      background: var(--rose);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .copy-button:active { background: var(--rose-pressed); }
+    .copy-button:focus-visible { outline: 3px solid #d7a9b3; outline-offset: 3px; }
+
+    .copy-icon {
+      position: relative;
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+    }
+
+    .copy-icon::before,
+    .copy-icon::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 13px;
+      border: 2px solid currentColor;
+    }
+
+    .copy-icon::before { top: 0; left: 0; opacity: .72; }
+    .copy-icon::after { right: 0; bottom: 0; background: var(--rose); }
+    .copy-button:active .copy-icon::after { background: var(--rose-pressed); }
+
+    .status {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--rose);
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .hint {
+      margin: 8px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    @media (min-width: 431px) {
+      main { box-shadow: 0 0 36px rgba(60, 40, 34, .12); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">ПРОМТ №25</div>
+    <h1>Stories с отзывами</h1>
+    <p class="subtitle">Stories-система</p>
+
+    <section class="paper" aria-labelledby="prompt-label">
+      <p class="paper-label" id="prompt-label">Готовый промт</p>
+      <pre id="promptText">Выступи в роли стратега по Stories, прогревам и вовлекающим сценариям.
+
+Моя задача: упаковать отзывы в Stories так, чтобы они усиливали доверие и продажи.
+Мне нужен конкретный результат, который можно сразу использовать в бизнесе, контенте, продажах или переписке.
+
+Контекст:
+Мой бизнес: [описание бизнеса].
+Моя аудитория: [кто эти люди, их ситуация, боли, желания].
+Мой продукт/услуга: [описание].
+Цель Stories: [знакомство / доверие / вовлечение / продажа / набор клиентов].
+Что важно показать аудитории: [описание].
+
+Если данных недостаточно, сначала задай до 5 уточняющих вопросов. Не переходи к финальному ответу, пока не станет понятно, что именно нужно сделать.
+
+После этого дай результат в структуре:
+1. Цель серии Stories.
+2. Сценарий по экранам: что показать и что написать.
+3. Идеи интерактивов: опросы, реакции, вопросы.
+4. Переход к заявке, диалогу или продаже.
+5. Что усилить, чтобы Stories не выглядели навязчиво.
+
+Пиши простым, уверенным и профессиональным языком. Избегай общих фраз, клише и пустых обещаний. Делай акцент на смысле, конкретике, пользе для клиента и понятном следующем шаге.</pre>
+    </section>
+
+    <button class="copy-button" id="copyBtn" type="button">
+      <span class="copy-icon" aria-hidden="true"></span>
+      <span id="copyLabel">Скопировать промт</span>
+    </button>
+    <div class="status" id="status" aria-live="polite"></div>
+    <p class="hint">После копирования промт можно сразу вставить в ChatGPT.</p>
+  </main>
+
+  <script>
+    const button = document.getElementById('copyBtn');
+    const label = document.getElementById('copyLabel');
+    const status = document.getElementById('status');
+    const promptText = document.getElementById('promptText');
+    const defaultLabel = label.textContent;
+
+    function legacyCopy(text) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.top = '-9999px';
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      const copied = document.execCommand('copy');
+      area.remove();
+      if (!copied) throw new Error('Legacy copy was rejected');
+    }
+
+    function selectVisiblePrompt() {
+      const range = document.createRange();
       range.selectNodeContents(promptText);
       const selection = window.getSelection();
       selection.removeAllRanges();
