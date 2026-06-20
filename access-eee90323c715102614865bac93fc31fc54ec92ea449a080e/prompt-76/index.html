@@ -5,7 +5,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fbf6f1">
-  <title>Промт №1 — Архитектор экспертного позиционирования</title>
+  <title>Промт №76 — AI-Маркетолог</title>
   <style>
     :root {
       color-scheme: light;
@@ -125,7 +125,81 @@
       border: 2px solid currentColor;
     }
 
-    .copy-icon::before { top: 0; left: 0; opacity: .72; …3244 tokens truncated…lement('textarea');
+    .copy-icon::before { top: 0; left: 0; opacity: .72; }
+    .copy-icon::after { right: 0; bottom: 0; background: var(--rose); }
+    .copy-button:active .copy-icon::after { background: var(--rose-pressed); }
+
+    .status {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--rose);
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .hint {
+      margin: 8px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    @media (min-width: 431px) {
+      main { box-shadow: 0 0 36px rgba(60, 40, 34, .12); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">ПРОМТ №76</div>
+    <h1>AI-Маркетолог</h1>
+    <p class="subtitle">AI-сотрудники</p>
+
+    <section class="paper" aria-labelledby="prompt-label">
+      <p class="paper-label" id="prompt-label">Готовый промт</p>
+      <pre id="promptText">Выступи в роли консультанта по внедрению AI-сотрудников в малый бизнес.
+
+Моя задача: настроить роль AI-Маркетолог как AI-сотрудника для ежедневной работы бизнеса.
+Мне нужен конкретный результат, который можно сразу использовать в бизнесе, контенте, продажах или переписке.
+
+Контекст:
+Мой бизнес: [описание бизнеса].
+Моя аудитория: [кто эти люди, их ситуация, боли, желания].
+Мой продукт/услуга: [описание].
+Какие задачи хочу делегировать AI: [список].
+Какой формат результата мне удобен: [таблица / список / план / текст].
+
+Если данных недостаточно, сначала задай до 5 уточняющих вопросов. Не переходи к финальному ответу, пока не станет понятно, что именно нужно сделать.
+
+После этого дай результат в структуре:
+1. Роль AI-сотрудника и зона ответственности.
+2. Какие данные ему нужны для работы.
+3. Первые задачи, которые можно делегировать.
+4. Формат ответа, удобный для внедрения.
+5. Правила качества и ограничения.
+
+Пиши простым, уверенным и профессиональным языком. Избегай общих фраз, клише и пустых обещаний. Делай акцент на смысле, конкретике, пользе для клиента и понятном следующем шаге.</pre>
+    </section>
+
+    <button class="copy-button" id="copyBtn" type="button">
+      <span class="copy-icon" aria-hidden="true"></span>
+      <span id="copyLabel">Скопировать промт</span>
+    </button>
+    <div class="status" id="status" aria-live="polite"></div>
+    <p class="hint">После копирования промт можно сразу вставить в ChatGPT.</p>
+  </main>
+
+  <script>
+    const button = document.getElementById('copyBtn');
+    const label = document.getElementById('copyLabel');
+    const status = document.getElementById('status');
+    const promptText = document.getElementById('promptText');
+    const defaultLabel = label.textContent;
+
+    function legacyCopy(text) {
+      const area = document.createElement('textarea');
       area.value = text;
       area.setAttribute('readonly', '');
       area.style.position = 'fixed';

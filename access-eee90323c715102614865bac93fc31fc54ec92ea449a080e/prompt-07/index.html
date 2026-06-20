@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf6f1">
+  <title>Промт №7 — Анализатор конкурентов</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #ebe3de;
+      --page: #fbf6f1;
+      --paper: #fffdf9;
+      --ink: #211b19;
+      --muted: #765e54;
+      --rose: #ad3f59;
+      --rose-pressed: #8f3048;
+      --line: #eadbd2;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      background: var(--background);
+    }
+
+    main {
+      width: min(100%, 430px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 18px 42px;
+      background-color: var(--page);
+      background-image: radial-gradient(circle at 80% 7%, rgba(173, 63, 89, .08), transparent 25%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 9px 14px;
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--rose);
+    }
+
+    h1 {
+      margin: 22px 0 6px;
+      font-family: Georgia, serif;
+      font-size: 32px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;…4021 tokens truncated…
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          legacyCopy(text);
+        }
+        label.textContent = 'Скопировано';
+        status.textContent = 'Промт скопирован';
+        window.setTimeout(() => {
+          label.textContent = defaultLabel;
+          status.textContent = '';
+        }, 2200);
+      } catch (error) {
+        selectVisiblePrompt();
+        status.textContent = 'Текст выделен — выберите «Копировать»';
+      }
+    }
+
+    button.addEventListener('click', copyPrompt);
+  </script>
+</body>
+</html>

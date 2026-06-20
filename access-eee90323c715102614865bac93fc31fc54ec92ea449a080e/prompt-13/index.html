@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf6f1">
+  <title>Промт №13 — Генератор историй клиентов</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #ebe3de;
+      --page: #fbf6f1;
+      --paper: #fffdf9;
+      --ink: #211b19;
+      --muted: #765e54;
+      --rose: #ad3f5…4389 tokens truncated…f (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          legacyCopy(text);
+        }
+        label.textContent = 'Скопировано';
+        status.textContent = 'Промт скопирован';
+        window.setTimeout(() => {
+          label.textContent = defaultLabel;
+          status.textContent = '';
+        }, 2200);
+      } catch (error) {
+        selectVisiblePrompt();
+        status.textContent = 'Текст выделен — выберите «Копировать»';
+      }
+    }
+
+    button.addEventListener('click', copyPrompt);
+  </script>
+</body>
+</html>
